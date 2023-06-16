@@ -28,7 +28,7 @@ const questions = [
         type: 'list',
         name: 'license',
         message: 'What license did you use for your project?',
-        choices: ['MIT', 'IDK', 'FML']
+        choices: ['MIT', 'GPLv2', 'Apache', 'Other']
     },
     {
         type: 'input',
@@ -55,7 +55,39 @@ const questions = [
 inquirer.prompt(questions)
 .then((data) => {
     const fileName = "created-readme.md";
-    const fileContent = `## My ReadMe!`
+    const fileContent = 
+    `# ${data.title}
+    
+## Description
+    ${data.description}
+    
+## Table of Contents
+    - [Description](#description)
+    - [Table of Contents](#table-of-contents)
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [License](#license)
+    - [Contributing](#contributing)
+    - [Tests](#tests)
+    - [Questions](#questions)
+
+## Installation
+    ${data.installation}
+    
+## Usage
+    ${data.use}
+    
+## License
+    ${data.license}
+    
+## Contributing
+    ${data.contribute}
+
+## Tests
+    ${data.test}
+    
+## Questions
+    If you have any questions please feel free to reach out to me via email at: ${data.email} or my Github at: github.com/${data.github}`
 
     fs.writeFile(fileName, fileContent, (err) =>
         err ? console.log(err) : console.log('Success!')
