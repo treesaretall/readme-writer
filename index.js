@@ -1,6 +1,5 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
-const { title } = require('process');
 const fs = require('fs');
 // TODO: Create an array of questions for user input
 const questions = [
@@ -56,20 +55,21 @@ inquirer.prompt(questions)
 .then((data) => {
     const fileName = "created-readme.md";
     const fileContent = 
-    `# ${data.title}
-    
+    `![Static Badge](https://img.shields.io/badge/License-${data.license}-brightgreen) ![Static Badge](https://img.shields.io/badge/GitHub-${data.github}-blue)
+
+# ${data.title}
+
+## Table of Contents
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+
 ## Description
     ${data.description}
-    
-## Table of Contents
-    - [Description](#description)
-    - [Table of Contents](#table-of-contents)
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [License](#license)
-    - [Contributing](#contributing)
-    - [Tests](#tests)
-    - [Questions](#questions)
 
 ## Installation
     ${data.installation}
@@ -93,10 +93,3 @@ inquirer.prompt(questions)
         err ? console.log(err) : console.log('Success!')
     );
 });
-
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();
-
